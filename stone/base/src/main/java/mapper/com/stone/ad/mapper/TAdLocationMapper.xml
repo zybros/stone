@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.stone.ad.mapper.TAdLocationMapper" >
+  <resultMap id="BaseResultMap" type="com.stone.ad.model.TAdLocation" >
+    <id column="LOCATION_ID" property="locationId" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="LOCATION_NAME" property="locationName" jdbcType="VARCHAR" />
+    <result column="LOCATION_DESCRIPTIONS" property="locationDescriptions" jdbcType="VARCHAR" />
+    <result column="LOCATION_WIDTH" property="locationWidth" jdbcType="INTEGER" />
+    <result column="LOCATION_HIGH" property="locationHigh" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.stone.ad.model.TAdLocation" extends="BaseResultMap" >
+    <result column="LOCATION_CODE" property="locationCode" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LOCATION_ID, parent_id, LOCATION_NAME, LOCATION_DESCRIPTIONS, LOCATION_WIDTH, LOCATION_HIGH, 
+    CREATE_TIME, UPDATE_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    LOCATION_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_ad_location
+    where LOCATION_ID = #{locationId,jdbcType=INTEGER}
+  </select>
+
+   <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_ad_location
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_ad_location
+    where LOCATION_ID = #{locationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stone.ad.model.TAdLocation" >
+    insert into t_ad_location (LOCATION_ID, parent_id, LOCATION_NAME, LOCATION_DESCRIPTIONS, 
+      LOCATION_WIDTH, LOCATION_HIGH, LOCATION_CODE)
+    values (#{locationId,jdbcType=INTEGER},#{parentId}, #{locationName,jdbcType=VARCHAR}, #{locationDescriptions,jdbcType=VARCHAR}, 
+      #{locationWidth,jdbcType=INTEGER}, #{locationHigh,jdbcType=INTEGER},  #{locationCode,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stone.ad.model.TAdLocation" >
+    insert into t_ad_location
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      LOCATION_ID,
+      parent_id,
+      LOCATION_NAME,
+      LOCATION_DESCRIPTIONS,
+      LOCATION_WIDTH,
+      LOCATION_HIGH,
+      CREATE_TIME,
+      UPDATE_TIME,
+      LOCATION_CODE,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{locationId,jdbcType=INTEGER},
+      #{parentId},
+      #{locationName,jdbcType=VARCHAR},
+      #{locationDescriptions,jdbcType=VARCHAR},
+      #{locationWidth,jdbcType=INTEGER},
+      #{locationHigh,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{locationCode,jdbcType=LONGVARCHAR},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stone.ad.model.TAdLocation" >
+    update t_ad_location
+    <set >
+    	<if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="locationName != null" >
+        LOCATION_NAME = #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="locationDescriptions != null" >
+        LOCATION_DESCRIPTIONS = #{locationDescriptions,jdbcType=VARCHAR},
+      </if>
+      <if test="locationWidth != null" >
+        LOCATION_WIDTH = #{locationWidth,jdbcType=INTEGER},
+      </if>
+      <if test="locationHigh != null" >
+        LOCATION_HIGH = #{locationHigh,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="locationCode != null" >
+        LOCATION_CODE = #{locationCode,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where LOCATION_ID = #{locationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.stone.ad.model.TAdLocation" >
+    update t_ad_location
+    set 
+      parent_id = #{parentId},
+      LOCATION_NAME = #{locationName,jdbcType=VARCHAR},
+      LOCATION_DESCRIPTIONS = #{locationDescriptions,jdbcType=VARCHAR},
+      LOCATION_WIDTH = #{locationWidth,jdbcType=INTEGER},
+      LOCATION_HIGH = #{locationHigh,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      LOCATION_CODE = #{locationCode,jdbcType=LONGVARCHAR}
+    where LOCATION_ID = #{locationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stone.ad.model.TAdLocation" >
+    update t_ad_location
+    set 
+       parent_id = #{parentId},
+      LOCATION_NAME = #{locationName,jdbcType=VARCHAR},
+      LOCATION_DESCRIPTIONS = #{locationDescriptions,jdbcType=VARCHAR},
+      LOCATION_WIDTH = #{locationWidth,jdbcType=INTEGER},
+      LOCATION_HIGH = #{locationHigh,jdbcType=INTEGER},
+      LOCATION_CODE = #{locationCode,jdbcType=LONGVARCHAR}
+    where LOCATION_ID = #{locationId,jdbcType=INTEGER}
+  </update>
+  
+   <resultMap id="mapWithSubList" type="com.stone.ad.model.TAdLocation" >
+    <id column="LOCATION_ID" property="locationId" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="LOCATION_NAME" property="locationName" jdbcType="VARCHAR" />
+    <result column="LOCATION_DESCRIPTIONS" property="locationDescriptions" jdbcType="VARCHAR" />
+    <result column="LOCATION_WIDTH" property="locationWidth" jdbcType="INTEGER" />
+    <result column="LOCATION_HIGH" property="locationHigh" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <collection property="sublist" column="LOCATION_ID" select="selectSublist" />  
+  </resultMap>
+  
+  
+  <select id="selectSublist" resultMap="mapWithSubList" parameterType="java.lang.Integer">
+    select 
+	    <include refid="Base_Column_List" />
+	from t_ad_location
+    where parent_id = #{parentId}
+  </select>
+</mapper>

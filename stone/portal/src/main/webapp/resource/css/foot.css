@@ -1,0 +1,165 @@
+@charset "utf-8";
+#down{
+	margin: 0px;
+	padding: 0px;
+	text-decoration:none;
+	list-style: none;
+	font-size: 12px;
+	font-family: Arial;
+}/*底部开始*/
+#down{
+	width: 1210px;
+	height: 150px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	margin-top: 20px;
+}
+#down .down_top{
+	width: 1210px;
+	height: 18px;
+	float: left;
+	text-align: center;
+}
+#down .down_top a{
+	padding-right: 10px;
+	padding-left: 10px;
+	line-height: 18px;
+	border-right: 1px solid #ccc;
+	color: #666;
+}
+#down .down_top a:hover{
+	color: #E4393C;
+	text-decoration: underline;
+}
+#down .down_center{
+	width: 1210px;
+	height: 72px;
+	float: left;
+	margin: 10px 0px;
+}
+#down .down_center span{
+	width: 1210px;
+	height: 14px;
+	float: left;
+	margin-top: 3px;
+	text-align: center;
+	color: #666;
+}
+#down .down_center a{
+	padding-right: 5px;
+	color: #666;
+}
+#down .down_center a:hover{
+	color: #E4393C;
+	text-decoration: underline;
+}
+#down .down_bot{
+	width: 1210px;
+	height: 40px;
+	float: left;
+	text-align: center;
+}
+#down .down_bot img{
+	margin-left: 10px;
+}
+/*底部结束*/
+.fu{
+	width: 38px;
+	height: 410px;
+	position: fixed;
+	left: 50%;
+	bottom: 30px;
+	margin-left: 615px;
+	display: none;
+}
+.fu ul li{
+	width: 38px;
+	height: 36px;
+	margin-bottom: 5px;
+	border: 1px solid #DEDEDE;
+	position: relative;
+}
+.fu ul li:hover .futuhide{
+	display: block!important;
+	/*使用！important后的属性优先级就很高了，可以覆盖掉element.syle的样式*/
+}
+.fu ul li:hover .futuhide1{
+	display: block!important;
+}
+.fu ul li .futuhide{
+	width: 38px;
+	height: 36px;
+	border: 1px solid #ED5759;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	font-size: 13px;
+	color: #ED5759;
+	padding-top: 3px;
+	background: #FDEEEE;
+	text-align: center;
+	display: none;
+}
+.fu ul li .futuhide1{
+	width: 38px;
+	height: 36px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	font-size: 13px;
+	color: white;
+	padding-top: 3px;
+	background: #615F5F;
+	text-align: center;
+	display: none;
+}
+.fu ul li .futu1{
+	width: 38px;
+	height: 36px;
+	background: url(../images/xuanfu.png) no-repeat;
+}
+.fu ul li .futu2{
+	width: 38px;
+	height: 36px;
+	background: url(../images/xuanfu.png) no-repeat 0px -54px;
+}
+.fu ul li .futu3{
+	width: 38px;
+	height: 36px;
+	background: url(../images/xuanfu.png) no-repeat 0px -109px;
+}
+.fu ul li .futu4{
+	width: 38px;
+	height: 36px;
+	background: url(../images/xuanfu.png) no-repeat 0px -162px;
+}
+.fu ul li .futu5{
+	width: 38px;
+	height: 36px;
+	background: url(../images/xuanfu.png) no-repeat 0px -220px;
+}
+.fu ul li .futu6{
+	width: 38px;
+	height: 36px;
+	background: url(../images/xuanfu.png) no-repeat 0px -275px;
+}
+.fu ul li .futu7{
+	width: 38px;
+	height: 36px;
+	background: url(../images/xuanfu.png) no-repeat 0px -329px;
+}
+.fu ul li .futu8{
+	width: 38px;
+	height: 36px;
+	background: url(../images/xuanfu.png) no-repeat 0px -385px;
+}
+.fu ul li .futu9{
+	width: 38px;
+	height: 36px;
+	background: url(../images/xuanfu.png) no-repeat 0px -497px;
+}
+.fu ul li .futu10{
+	width: 38px;
+	height: 36px;
+	background: url(../images/xuanfu.png) no-repeat 0px -552px;
+}

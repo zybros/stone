@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.stone.ad.mapper.TAdOwnerMapper" >
+  <resultMap id="BaseResultMap" type="com.stone.ad.model.TAdOwner" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="LINK_MAN" property="linkMan" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+    <result column="COMPANY_SITE" property="companySite"/>
+    <result column="OFFICE_PHONE" property="officePhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, LINK_MAN, PHONE, EMAIL, `TYPE`, ADDRESS, COMPANY_NAME, COMPANY_SITE, OFFICE_PHONE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ad_owner
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_ad_owner
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_ad_owner
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stone.ad.model.TAdOwner" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_ad_owner (LINK_MAN, PHONE, EMAIL, 
+      `TYPE`, ADDRESS, COMPANY_NAME, 
+      COMPANY_SITE, OFFICE_PHONE)
+    values (#{linkMan,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{companySite}, #{officePhone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stone.ad.model.TAdOwner" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_ad_owner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      LINK_MAN,
+      PHONE,
+      EMAIL,
+      `TYPE`,
+      ADDRESS,
+      COMPANY_NAME,
+      COMPANY_SITE,
+      OFFICE_PHONE,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{linkMan,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR},
+      #{type,jdbcType=INTEGER},
+      #{address,jdbcType=VARCHAR},
+      #{companyName,jdbcType=VARCHAR},
+      #{companySite},
+      #{officePhone,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stone.ad.model.TAdOwner" >
+    update t_ad_owner
+    <set >
+      <if test="linkMan != null" >
+        LINK_MAN = #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        `TYPE` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companySite != null" >
+        COMPANY_SITE = #{companySite},
+      </if>
+      <if test="officePhone != null" >
+        OFFICE_PHONE = #{officePhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stone.ad.model.TAdOwner" >
+    update t_ad_owner
+    set LINK_MAN = #{linkMan,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      `TYPE` = #{type,jdbcType=INTEGER},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      COMPANY_SITE = #{companySite},
+      OFFICE_PHONE = #{officePhone,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

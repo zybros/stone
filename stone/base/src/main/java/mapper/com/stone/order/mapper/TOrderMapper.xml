@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.stone.order.mapper.TOrderMapper" >
+  <cache type="org.mybatis.caches.ehcache.EhcacheCache" />
+  <resultMap id="BaseResultMap" type="com.stone.order.model.TOrder" >
+    <id column="ORDER_ID" property="orderId" jdbcType="INTEGER" />
+    <result column="GROUP_ID" property="groupId" jdbcType="INTEGER" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="ORDER_NUM" property="orderNum" jdbcType="VARCHAR" />
+    <result column="PAYMENT" property="payment" jdbcType="INTEGER" />
+    <result column="PAY_PLATFORM" property="payPlatform" jdbcType="INTEGER" />
+    <result column="ORDER_SUM" property="orderSum" jdbcType="REAL" />
+    <result column="SHIP_FEE" property="shipFee" jdbcType="REAL" />
+    <result column="IS_PAID" property="isPaid" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="PAYMENT_CASE" property="paymentCase" jdbcType="INTEGER" />
+    <result column="DISTRI_ID" property="distriId" jdbcType="INTEGER" />
+    <result column="DELIVERY_METHOD" property="deliveryMethod" jdbcType="INTEGER" />
+    <result column="PAYMENT_NO" property="paymentNo" jdbcType="VARCHAR" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="PAY_TIME" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="DEPOSIT_TIME" property="depositTime" jdbcType="TIMESTAMP" />
+    <result column="SUCCESS_TIME" property="successTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="SRV_TYPE" property="srvType" jdbcType="INTEGER" />
+    <result column="IS_DELETED" property="isDeleted" jdbcType="INTEGER" />
+    <result column="IS_DISPLAY" property="isDisplay" jdbcType="INTEGER" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="INTEGER" />
+    <result column="notes" property="notes"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ORDER_ID, GROUP_ID, USER_ID, SHOP_ID, USERNAME, ORDER_NUM, PAYMENT, PAY_PLATFORM, ORDER_SUM, 
+    SHIP_FEE, IS_PAID, STATUS, PAYMENT_CASE, DISTRI_ID, DELIVERY_METHOD, PAYMENT_NO, 
+    DATE_FORMAT(ORDER_TIME,'%Y-%c-%d %h:%i:%s') as ORDER_TIME, PAY_TIME, DEPOSIT_TIME, SUCCESS_TIME, UPDATE_TIME, SRV_TYPE, IS_DELETED, 
+    IS_DISPLAY, ORDER_TYPE,notes
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from t_order
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stone.order.model.TOrder" flushCache="true" >
+    insert into t_order (ORDER_ID, GROUP_ID, USER_ID, SHOP_ID, 
+      USERNAME, ORDER_NUM, PAYMENT, 
+      PAY_PLATFORM, ORDER_SUM, SHIP_FEE, 
+      IS_PAID, STATUS, PAYMENT_CASE, 
+      DISTRI_ID, DELIVERY_METHOD, PAYMENT_NO, 
+      PAY_TIME, DEPOSIT_TIME, 
+      SUCCESS_TIME, UPDATE_TIME, SRV_TYPE, 
+      ORDER_TYPE,notes
+      )
+    values (sequence_next_value('t_order'), #{groupId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{username,jdbcType=VARCHAR}, trade_next_value('order_num'), #{payment,jdbcType=INTEGER}, 
+      #{payPlatform,jdbcType=INTEGER}, #{orderSum,jdbcType=REAL}, #{shipFee,jdbcType=REAL}, 
+      #{isPaid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{paymentCase,jdbcType=INTEGER}, 
+      #{distriId,jdbcType=INTEGER}, #{deliveryMethod,jdbcType=INTEGER}, #{paymentNo,jdbcType=VARCHAR}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{depositTime,jdbcType=TIMESTAMP}, 
+      #{successTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{srvType,jdbcType=INTEGER}, 
+      #{orderType,jdbcType=INTEGER},#{notes}
+      )
+       <selectKey resultType="long" keyProperty="orderId" order="AFTER">
+           SELECT max(ORDER_ID) from t_order
+       </selectKey> 
+  </insert>
+  <insert id="insertSelective" parameterType="com.stone.order.model.TOrder" flushCache="true" >
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ORDER_ID,
+      GROUP_ID,
+      USER_ID,
+      USERNAME,
+      ORDER_NUM,
+      PAYMENT,
+      PAY_PLATFORM,
+      ORDER_SUM,
+      SHIP_FEE,
+      IS_PAID,
+      STATUS,
+      PAYMENT_CASE,
+      DISTRI_ID,
+      DELIVERY_METHOD,
+      PAYMENT_NO,
+      ORDER_TIME,
+      PAY_TIME,
+      DEPOSIT_TIME,
+      SUCCESS_TIME,
+      UPDATE_TIME,
+      SRV_TYPE,
+      IS_DELETED,
+      IS_DISPLAY,
+      ORDER_TYPE,
+      notes,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+     sequence_next_value('t_order'),
+      #{groupId,jdbcType=INTEGER},
+      #{userId,jdbcType=INTEGER},
+      #{username,jdbcType=VARCHAR},
+      #{orderNum,jdbcType=VARCHAR},
+      #{payment,jdbcType=INTEGER},
+      #{payPlatform,jdbcType=INTEGER},
+      #{orderSum,jdbcType=REAL},
+      #{shipFee,jdbcType=REAL},
+      #{isPaid,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER},
+      #{paymentCase,jdbcType=INTEGER},
+      #{distriId,jdbcType=INTEGER},
+      #{deliveryMethod,jdbcType=INTEGER},
+      #{paymentNo,jdbcType=VARCHAR},
+      #{orderTime,jdbcType=TIMESTAMP},
+      #{payTime,jdbcType=TIMESTAMP},
+      #{depositTime,jdbcType=TIMESTAMP},
+      #{successTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{srvType,jdbcType=INTEGER},
+      #{isDeleted,jdbcType=INTEGER},
+      #{isDisplay,jdbcType=INTEGER},
+      #{orderType,jdbcType=INTEGER},
+      #{notes},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stone.order.model.TOrder" flushCache="true" >
+    update t_order
+    <set >
+      <if test="groupId != null" >
+        GROUP_ID = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="payment != null" >
+        PAYMENT = #{payment,jdbcType=INTEGER},
+      </if>
+      <if test="payPlatform != null" >
+        PAY_PLATFORM = #{payPlatform,jdbcType=INTEGER},
+      </if>
+      <if test="orderSum != null" >
+        ORDER_SUM = #{orderSum,jdbcType=REAL},
+      </if>
+      <if test="shipFee != null" >
+        SHIP_FEE = #{shipFee,jdbcType=REAL},
+      </if>
+      <if test="isPaid != null" >
+        IS_PAID = #{isPaid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="paymentCase != null" >
+        PAYMENT_CASE = #{paymentCase,jdbcType=INTEGER},
+      </if>
+      <if test="distriId != null" >
+        DISTRI_ID = #{distriId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryMethod != null" >
+        DELIVERY_METHOD = #{deliveryMethod,jdbcType=INTEGER},
+      </if>
+      <if test="paymentNo != null" >
+        PAYMENT_NO = #{paymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depositTime != null" >
+        DEPOSIT_TIME = #{depositTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successTime != null" >
+        SUCCESS_TIME = #{successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="srvType != null" >
+        SRV_TYPE = #{srvType,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null" >
+        IS_DELETED = #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="isDisplay != null" >
+        IS_DISPLAY = #{isDisplay,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="notes != null" >
+        notes = #{notes},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stone.order.model.TOrder" flushCache="true" >
+    update t_order
+    set GROUP_ID = #{groupId,jdbcType=INTEGER},
+      USER_ID = #{userId,jdbcType=INTEGER},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+      PAYMENT = #{payment,jdbcType=INTEGER},
+      PAY_PLATFORM = #{payPlatform,jdbcType=INTEGER},
+      ORDER_SUM = #{orderSum,jdbcType=REAL},
+      SHIP_FEE = #{shipFee,jdbcType=REAL},
+      IS_PAID = #{isPaid,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      PAYMENT_CASE = #{paymentCase,jdbcType=INTEGER},
+      DISTRI_ID = #{distriId,jdbcType=INTEGER},
+      DELIVERY_METHOD = #{deliveryMethod,jdbcType=INTEGER},
+      PAYMENT_NO = #{paymentNo,jdbcType=VARCHAR},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      DEPOSIT_TIME = #{depositTime,jdbcType=TIMESTAMP},
+      SUCCESS_TIME = #{successTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      SRV_TYPE = #{srvType,jdbcType=INTEGER},
+      IS_DELETED = #{isDeleted,jdbcType=INTEGER},
+      IS_DISPLAY = #{isDisplay,jdbcType=INTEGER},
+      ORDER_TYPE = #{orderType,jdbcType=INTEGER},
+      notes = #{notes}
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="select4myOrderList" resultMap="myOrderListMap" parameterType="com.stone.order.model.TOrder" >
+  	select o.*,s.`name` as SHOP_NAME FROM t_order o INNER JOIN t_shop s
+	on o.shop_id = s.shop_id
+      <where>  
+        <if test="userId != null and userId != '' ">  
+            AND o.user_id = #{userId}   
+        </if>  
+        <if test="status != null and status != '' ">  
+             AND o.status = #{status}   
+        </if>  
+    </where>    
+     ORDER BY o.order_id desc
+  </select>
+  
+  
+  <resultMap id="myOrderListMap" type="com.stone.order.model.TOrder" >
+    <id column="ORDER_ID" property="orderId" jdbcType="INTEGER" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="ORDER_NUM" property="orderNum" jdbcType="VARCHAR" />
+    <result column="ORDER_SUM" property="orderSum" jdbcType="REAL" />
+    <result column="SHIP_FEE" property="shipFee" jdbcType="REAL" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="PAY_TIME" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="IS_DELETED" property="isDeleted" jdbcType="INTEGER" />
+    <collection column="ORDER_ID" property="details" select="selectDetailByOrderId"/>
+  </resultMap>
+  
+  <resultMap id="orderDetailMap" type="com.stone.order.model.TOrderDetail" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ORDER_ID" property="orderId" jdbcType="INTEGER" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="INTEGER" />
+    <result column="PRODUCT_NO" property="productNo" jdbcType="VARCHAR" />
+    <result column="PRODUCT_TITLE" property="productTitle" jdbcType="VARCHAR" />
+    <result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+    <result column="SKU_NAME" property="skuName" jdbcType="VARCHAR" />
+    <result column="SKU_NO" property="skuNo" jdbcType="VARCHAR" />
+    <result column="SKU_IMG" property="skuImg" jdbcType="VARCHAR" />
+    <result column="SKU_PRICE" property="skuPrice" jdbcType="REAL" />
+    <result column="SKU_DISCOUNT" property="skuDiscount" jdbcType="REAL" />
+    <result column="DISCOUNT_PRICE" property="discountPrice" jdbcType="REAL" />
+    <result column="PRICE" property="price" jdbcType="REAL" />
+    <result column="COUNT" property="count" jdbcType="INTEGER" />
+  </resultMap>
+
+ <select id="selectDetailByOrderId" resultMap="orderDetailMap" parameterType="java.lang.Long" >
+    select * from t_order_detail
+    where ORDER_ID = #{value}
+  </select>
+
+
+
+  
+   <update id="updateStatusById" parameterType="com.stone.order.model.TOrder" flushCache="true" >
+    update t_order
+    set `last_time` = now(), status = #{status}
+    where order_id = #{orderId}
+  </update>
+</mapper>

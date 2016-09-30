@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.stone.product.mapper.TSkuValueMapper">
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache" />
+	<resultMap id="BaseResultMap" type="com.stone.product.model.TSkuValue">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="PRODUCT_ID" property="productId" jdbcType="INTEGER" />
+		<result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+		<result column="TEMPLATE_ID" property="templateId" jdbcType="INTEGER" />
+		<result column="VALUE" property="value" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, PRODUCT_ID, SKU_ID, TEMPLATE_ID, `VALUE`
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_sku_value
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer"
+		flushCache="true">
+		delete from t_sku_value
+		where ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.stone.product.model.TSkuValue"
+		flushCache="true">
+		insert into t_sku_value (ID, PRODUCT_ID, SKU_ID,
+		TEMPLATE_ID, `VALUE`)
+		values (#{id,jdbcType=INTEGER},
+		#{productId,jdbcType=INTEGER},
+		#{skuId,jdbcType=INTEGER},
+		#{templateId,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR})
+	</insert>
+
+
+	<insert id="insertList" parameterType="java.util.List">
+		insert into t_sku_value (ID, PRODUCT_ID, SKU_ID,
+		TEMPLATE_ID, `VALUE`)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.id}, #{item.productId}, #{item.skuId},
+			#{item.templateId}, #{item.value})
+		</foreach>
+	</insert>
+
+
+	<insert id="insertSelective" parameterType="com.stone.product.model.TSkuValue"
+		flushCache="true">
+		insert into t_sku_value
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID,
+			PRODUCT_ID,
+			SKU_ID,
+			TEMPLATE_ID,
+			`VALUE`,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=INTEGER},
+			#{productId,jdbcType=INTEGER},
+			#{skuId,jdbcType=INTEGER},
+			#{templateId,jdbcType=INTEGER},
+			#{value,jdbcType=VARCHAR},
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.stone.product.model.TSkuValue"
+		flushCache="true">
+		update t_sku_value
+		<set>
+			<if test="productId != null">
+				PRODUCT_ID = #{productId,jdbcType=INTEGER},
+			</if>
+			<if test="skuId != null">
+				SKU_ID = #{skuId,jdbcType=INTEGER},
+			</if>
+			<if test="templateId != null">
+				TEMPLATE_ID = #{templateId,jdbcType=INTEGER},
+			</if>
+			<if test="value != null">
+				`VALUE` = #{value,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.stone.product.model.TSkuValue"
+		flushCache="true">
+		update t_sku_value
+		set PRODUCT_ID =
+		#{productId,jdbcType=INTEGER},
+		SKU_ID = #{skuId,jdbcType=INTEGER},
+		TEMPLATE_ID = #{templateId,jdbcType=INTEGER},
+		`VALUE` =
+		#{value,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	
+	
+	<delete id="deleteByProductId" parameterType="java.lang.Integer">
+		delete from
+		t_sku_value where PRODUCT_ID = #{productId}
+	</delete>
+	
+	<delete id="deleteBySkuId" parameterType="java.lang.Integer">
+		delete from
+		t_sku_value where SKU_ID = #{skuId}
+	</delete>
+	
+	<resultMap id="valMapWithName" type="com.stone.product.model.TSkuValue">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="PRODUCT_ID" property="productId" jdbcType="INTEGER" />
+		<result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+		<result column="TEMPLATE_ID" property="templateId" jdbcType="INTEGER" />
+		<result column="VALUE" property="value" jdbcType="VARCHAR" />
+		<result column="NAME" property="templateName" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="selectSkuValsByProductId" resultMap="valMapWithName"
+		parameterType="java.lang.Integer">
+		select 
+			val.*,tpl.`name` 
+		from 
+			t_sku_value val, t_category_template tpl
+		where 
+			val.PRODUCT_ID=#{productId} and val.TEMPLATE_ID=tpl.ID;
+	</select>
+	
+	<select id="selectSkuValsGroupByTemplateId" resultMap="valMapWithName"
+	parameterType="java.lang.Integer">
+		select val.*,GROUP_CONCAT(distinct value ORDER BY TEMPLATE_ID SEPARATOR',') as `VALUES`, tpl.`name` from t_sku_value val, t_category_template tpl
+		where val.PRODUCT_ID=#{productId} and val.TEMPLATE_ID=tpl.ID
+		group BY template_id
+	</select>
+	
+	
+</mapper>

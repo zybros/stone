@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.stone.brand.mapper.TCategoryBrandMapper" >
+  <resultMap id="BaseResultMap" type="com.stone.brand.model.TCategoryBrandKey" >
+    <id column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <id column="category_id" property="categoryId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    brand_id, category_id
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="com.stone.brand.model.TCategoryBrandKey" >
+    delete from t_category_brand
+    where brand_id = #{brandId,jdbcType=INTEGER}
+      and category_id = #{categoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert2" parameterType="com.stone.brand.model.TCategoryBrandKey" >
+    insert into t_category_brand (brand_id, category_id)
+    values (#{brandId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stone.brand.model.TCategoryBrandKey" >
+    insert into t_category_brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      brand_id,
+      category_id,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{brandId,jdbcType=INTEGER},
+      #{categoryId,jdbcType=INTEGER},
+    </trim>
+  </insert>
+</mapper>

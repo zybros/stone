@@ -1,0 +1,22 @@
+#content{
+	position: relative;
+/* 	border: solid 1px red; */
+}
+
+#left{
+	width:300px;
+	position: relative;
+/* 	border: solid 1px red; */
+	float:left;
+	padding-left: 30;
+}
+
+#right{
+	
+	position: relative;
+	border: solid 1px #ccc;
+	padding-top: 50px;
+	width:700px;
+	
+	float:left;
+}

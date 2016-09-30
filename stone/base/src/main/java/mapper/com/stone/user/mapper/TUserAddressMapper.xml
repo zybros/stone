@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.stone.user.mapper.TUserAddressMapper">
+<!-- 	<cache type="org.mybatis.caches.ehcache.EhcacheCache" /> -->
+	<resultMap id="BaseResultMap" type="com.stone.user.model.TUserAddress">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="country" property="country" jdbcType="BIGINT" />
+		<result column="province" property="province" jdbcType="BIGINT" />
+		<result column="city" property="city" jdbcType="BIGINT" />
+		<result column="district" property="district" jdbcType="BIGINT" />
+		<result column="street" property="street" jdbcType="BIGINT" />
+		<result column="post_code" property="postCode" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="receiver" property="receiver" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="fixed_phone" property="fixedPhone" jdbcType="VARCHAR" />
+		<result column="is_default" property="isDefault" jdbcType="INTEGER" />
+		<result column="whole_addr" property="wholeAddr" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, user_id, country, province, city, district, street,
+		post_code,
+		address, receiver, phone,
+		fixed_phone, is_default,whole_addr
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_user_address
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer"
+		flushCache="true">
+		delete from t_user_address
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.stone.user.model.TUserAddress"
+		flushCache="true">
+		insert into t_user_address (id,user_id, country, province,
+		city, district, street,
+		post_code, address, receiver,
+		phone,
+		fixed_phone, is_default,whole_addr
+		)
+		values (#{id,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{country},
+		#{province},
+		#{city},
+		#{district},
+		#{street},
+		#{postCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+		#{receiver,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},
+		#{fixedPhone,jdbcType=VARCHAR},
+		#{isDefault,jdbcType=INTEGER},
+		 #{wholeAddr}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.stone.user.model.TUserAddress"
+		flushCache="true">
+		insert into t_user_address
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			user_id,
+			country,
+			province,
+			city,
+			district,
+			street,
+			post_code,
+			address,
+			receiver,
+			phone,
+			fixed_phone,
+			is_default,
+			whole_addr,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=INTEGER},
+			#{userId,jdbcType=INTEGER},
+			#{country},
+			#{province},
+			#{city},
+			#{district},
+			#{street},
+			#{postCode,jdbcType=VARCHAR},
+			#{address,jdbcType=VARCHAR},
+			#{receiver,jdbcType=VARCHAR},
+			#{phone,jdbcType=VARCHAR},
+			#{fixedPhone,jdbcType=VARCHAR},
+			#{isDefault,jdbcType=INTEGER},
+			 #{wholeAddr},
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.stone.user.model.TUserAddress">
+		update t_user_address
+		<set>
+			<if test="country != null">
+				country = #{country},
+			</if>
+			<if test="province != null">
+				province = #{province},
+			</if>
+			<if test="city != null">
+				city = #{city},
+			</if>
+			<if test="district != null">
+				district = #{district},
+			</if>
+			<if test="street != null">
+				street = #{street},
+			</if>
+			<if test="postCode != null">
+				post_code = #{postCode,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="receiver != null">
+				receiver = #{receiver,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="fixedPhone != null">
+				fixed_phone = #{fixedPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="isDefault != null">
+				is_default = #{isDefault,jdbcType=INTEGER},
+			</if>
+			<if test="wholeAddr != null">
+				whole_addr = #{wholeAddr},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.stone.user.model.TUserAddress"
+		flushCache="true">
+		update t_user_address
+		set country =
+		#{country},
+		province = #{province},
+		city = #{city},
+		district =
+		#{district},
+		street = #{street},
+		post_code = #{postCode,jdbcType=VARCHAR},
+		address =
+		#{address,jdbcType=VARCHAR},
+		receiver = #{receiver,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		fixed_phone =
+		#{fixedPhone,jdbcType=VARCHAR},
+		is_default =
+		#{isDefault,jdbcType=INTEGER},
+		whole_addr =#{wholeAddr},
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	
+	<update id="cancelDefaultByUserId" parameterType="com.stone.user.model.TUserAddress">
+		update t_user_address
+		set 
+		is_default = 0
+		where user_id = #{userId} and is_default = 1
+	</update>
+
+	<select id="selectList" resultMap="BaseResultMap"
+		parameterType="com.stone.user.model.TUserAddress">
+		select
+		<include refid="Base_Column_List" />
+		from t_user_address
+		<where>
+			<if test="phone != null">
+				AND phone = #{phone}
+			</if>
+			<if test="fixedPhone != null">
+				AND fixed_phone = #{fixedPhone}
+			</if>
+			<if test="userId != null">
+				AND user_id = #{userId}
+			</if>
+		</where>
+	</select>
+</mapper>

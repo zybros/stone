@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.stone.site.mapper.TNavigationFieldMapper">
+	<resultMap id="BaseResultMap" type="com.stone.site.model.TNavigationField">
+		<id column="FIELD_ID" property="fieldId" jdbcType="INTEGER" />
+		<result column="RECORD_ID" property="recordId" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="URL" property="url" jdbcType="VARCHAR" />
+		<result column="ORDER" property="order" jdbcType="INTEGER" />
+		<result column="HOT" property="hot" jdbcType="INTEGER" />
+		<result column="STATUS" property="status" jdbcType="INTEGER" />
+		<association property="record" column="recordId"
+			select="com.stone.site.mapper.TNavigationRecordMapper.selectByPrimaryKey" />
+	</resultMap>
+	<select id="selectByRecordId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_navigation_field where RECORD_ID =#{RECORD_ID}
+	</select>
+	<sql id="Base_Column_List">
+		FIELD_ID, RECORD_ID, `NAME`, URL, `ORDER`, HOT, `STATUS`
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_navigation_field
+		where FIELD_ID = #{fieldId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_navigation_field
+		where FIELD_ID = #{fieldId,jdbcType=INTEGER}
+	</delete>
+	
+	<delete id="deleteByRecordId" parameterType="java.lang.Integer">
+		delete from t_navigation_field
+		where RECORD_ID = #{recordId}
+	</delete>
+	
+	
+	<insert id="insert" parameterType="com.stone.site.model.TNavigationField"
+		useGeneratedKeys="true" keyProperty="fieldId">
+		insert into t_navigation_field (RECORD_ID, `NAME`, URL,
+		`ORDER`, HOT, `STATUS`)
+		values (#{recordId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR},
+		#{order,jdbcType=INTEGER}, #{hot,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.stone.site.model.TNavigationField"
+		useGeneratedKeys="true" keyProperty="fieldId">
+		insert into t_navigation_field
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			RECORD_ID,
+			`NAME`,
+			URL,
+			`ORDER`,
+			HOT,
+			`STATUS`,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{recordId,jdbcType=INTEGER},
+			#{name,jdbcType=VARCHAR},
+			#{url,jdbcType=VARCHAR},
+			#{order,jdbcType=INTEGER},
+			#{hot,jdbcType=INTEGER},
+			#{status,jdbcType=INTEGER},
+		</trim>
+	</insert>
+
+
+	<insert id="insertList" parameterType="java.util.List">
+		insert into t_navigation_field (RECORD_ID, `NAME`, URL,
+		`ORDER`, HOT, `STATUS`)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.recordId}, #{item.name}, #{item.url},
+			#{item.order}, #{item.hot}, #{item.status})
+		</foreach>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.stone.site.model.TNavigationField">
+		update t_navigation_field
+		<set>
+			<if test="recordId != null">
+				RECORD_ID = #{recordId,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				`NAME` = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				URL = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="order != null">
+				`ORDER` = #{order,jdbcType=INTEGER},
+			</if>
+			<if test="hot != null">
+				HOT = #{hot,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				`STATUS` = #{status,jdbcType=INTEGER},
+			</if>
+		</set>
+		where FIELD_ID = #{fieldId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.stone.site.model.TNavigationField">
+		update t_navigation_field
+		set
+		`NAME` = #{name,jdbcType=VARCHAR},
+		URL = #{url,jdbcType=VARCHAR},
+		`ORDER` = #{order,jdbcType=INTEGER},
+		HOT = #{hot,jdbcType=INTEGER},
+		`STATUS` = #{status,jdbcType=INTEGER}
+		where FIELD_ID = #{fieldId,jdbcType=INTEGER}
+	</update>
+</mapper>

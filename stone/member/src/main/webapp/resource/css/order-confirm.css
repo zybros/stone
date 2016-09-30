@@ -1,0 +1,37 @@
+table{  width:100%; border-collapse:collapse;border:none;}
+td{ border:1px solid #ccc; }
+.row{
+	width:980;border:1px solid #ccc;background:white;margin:5;text-align:left;position: relative;left:175px;
+}
+.title{
+	height:20px;border:1px solid #ccc;background: #ede7e7;padding:5;text-align:center;font-size:20px;font-weight: bold;
+}
+
+.content{
+	border:1px solid #ccc;background:white;padding:10;text-align:left;
+}
+
+.addr-content{
+	border:1px solid red;background:white;padding-top:20;margin:5;text-align:left;
+}
+.addr{
+	width:290;height:80px;background:white;text-align:left;float:left;
+	cursor:pointer;margin:3px;padding-top:10px;padding-left:15px;
+	background-image: url("../images/user-addr-unselected.png");
+	background-repeat: no-repeat;background-size:100% 100%;
+}
+
+.addr-new{
+	width:290;height:80px;background:white;text-align:left;float:left;padding:10px;
+}
+
+.addr-selected{
+	width:290;height:80px;background:#ff8000;text-align:left;float:left;
+	cursor:pointer;margin:3px;padding-top:10px;padding-left:15px;
+	background-image: url("../images/user-addr-selected.png");
+	background-repeat: no-repeat;background-size:100% 100%;
+}
+
+.btn-div{
+	width:980;background:white;margin:5;text-align:center;position: relative;left:175px;
+}

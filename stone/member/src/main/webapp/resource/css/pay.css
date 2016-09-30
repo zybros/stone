@@ -1,0 +1,30 @@
+.payway-title{
+	width:1020px;border:1px solid #ccc;background:white;margin:5;text-align:center;position: relative;left:175px;
+	padding-top:20px;height:30px;font-size:large;font-weight: bolder;
+	
+}
+.payway{
+	width:980px;border:1px solid #ccc;background:white;margin:5;text-align:left;position: relative;left:175px;
+	padding:20px;height:160px;
+}
+.payway .item{
+	
+	float:left;border:1px solid #ccc; margin:10px;width:260px;
+}
+
+.radio-content{
+	margin-top:40;width:580;height:70;
+}
+.radio-vertical-middle{
+	margin-left:27;margin-top:25;float:left;
+	/**border:1px solid red;*/
+}
+
+.pay-img{
+	width:125;heigh:65;float:left;
+	/**border:1px solid green;*/
+}
+
+.pay-btn{
+	width:980;background:white;margin:5;text-align:center;position: relative;left:175px;
+}

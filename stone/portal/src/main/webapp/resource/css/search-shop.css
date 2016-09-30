@@ -1,0 +1,328 @@
+@charset "utf-8";
+*{
+	margin: 0px;
+	padding: 0px;
+	text-decoration:none;
+	list-style: none;
+	font-size: 12px;
+	font-family: Arial;
+}
+/*搜索区域开始*/
+
+#serach{
+	width: 1210px;
+	height: 90px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 98;
+	/*border: 1px solid orange;*/
+}
+#serach .logo{
+	width: 270px;
+	height: 60px;
+	float: left;
+	margin-top: 5px;
+	position: relative;
+}
+#serach .logo .dongtu{
+	width: 100px;
+	height: 70px;
+	background: url(../images/aa.gif) no-repeat;
+	position: absolute;
+	top: -5px;
+	left: 170px;
+}
+#serach .sou{
+	float: left;
+	width: 600px;
+	height: 57px;
+	margin-top: 15px;
+	margin-left: 20px;
+	/*border: 1px solid orange;*/
+}
+#serach .sou .sousuo{
+	width: 570px;
+	height: 30px;
+	float: left;
+	margin-top: 4px;
+	border: 3px solid #E4393C;
+}
+#serach .sou .kuang{
+	width: 406px;
+	height: 22px;
+	float: left;
+	padding: 4px 4px;
+	line-height: 20px;
+	border: none;
+}
+#serach .sou .souzi{
+	width: 78px;
+	height: 30px;
+	float: right;
+	background: #474E5C;
+}#serach .sou .souzi2{	width: 78px;	height: 30px;	float: right;	background: #B61D1D ;}#serach .sou .souzi2 a{	display: block;	font-size: 16px;	font-weight: 700;	color: white;	text-align: center;	line-height: 30px;}
+#serach .sou .souzi a{
+	display: block;
+	font-size: 16px;
+	font-weight: 700;
+	color: white;
+	text-align: center;
+	line-height: 30px;
+}
+#serach .sou .reci{
+	width: 510px;
+	height: 18px;
+	float: left;
+	margin-top: 5px;
+}
+#serach .sou .reci{
+	color: #999;
+}
+#serach .sou .reci a{
+	color: #999;
+	padding-right: 5px;
+}
+#serach .sou .reci a:hover{
+	color: #E4393C;
+	text-decoration: underline;
+}
+#serach .myjd{
+	width: 108px;
+	height: 32px;
+	float: left;
+	background: #F7F7F7;
+	border: 1px solid #ccc;
+	margin-top: 25px;
+	margin-left: 10px;
+	position: relative;
+}
+#serach .myjd .mytu{
+	width: 19px;
+	height: 17px;
+	float: left;
+	background: url(../images/all.png) no-repeat -123px -31px;
+	margin-top: 7px;
+	margin-left: 10px;
+}
+#serach .myjd a{
+	display: block;
+	color: #666;
+	float: left;
+	margin-top: 7px;
+	margin-left: 5px;
+}
+#serach .myjd a:hover{
+	color: #E4393C;
+	text-decoration: underline;
+}
+#serach .myjd .jiantou{
+	width: 10px;
+	height: 8px;
+	background: url(../images/all.png) no-repeat -94px -53px;
+	/*border: 1px solid orange;*/
+	position: absolute;
+	top: 10px;
+	left: 90px;
+}
+#serach .myjd .myjdhide{
+	width: 310px;
+	height: 235px;
+	border: 1px solid #ccc;
+	position: absolute;
+	top: 32px;
+	left: -203px;
+	background: white;
+	display: none;
+	z-index: 22;
+}
+#serach .myjd:hover .myjdhide{
+	display: block;
+}
+#serach .myjd .myjdhide .hello{
+	width: 310px;
+	height: 30px;
+	float: left;
+	/*border: 1px solid orange;*/
+}
+#serach .myjd .myjdhide .hello span{
+	color: #666;
+	float: left;
+	padding-top: 7px;
+	padding-left: 10px;
+}
+#serach .myjd .myjdhide .hello a{
+	float: left;
+	color: #005EA7;
+	margin-left: 1px;
+}
+#serach .myjd .myjdhide .hey{
+	width: 310px;
+	height: 150px;
+	float: left;
+	/*border: 1px solid orange;*/
+}
+#serach .myjd .myjdhide .hey .heyleft{
+	width: 154px;
+	height: 140px;
+	float: left;
+	border-right: 1px solid #eee;
+}
+#serach .myjd .myjdhide .hey ul li {
+	width: 124px;
+	height: 20px;
+	margin-top: 7px;
+	margin-left: 10px;
+	/*clear: both;*/
+}
+#serach .myjd .myjdhide .hey ul li a{
+	width: 124px;
+	height: 20px;
+	margin-top: 1px;
+	line-height: 20px;
+	color: #005EA7;
+}
+#serach .myjd .myjdhide .hey ul li a:hover{
+	color: #E4393C;
+	text-decoration: none;
+	background: #F3F3F3;
+}
+#serach .myjd .myjdhide .hey .heyright{
+	width: 150px;
+	height: 130px;
+	float: left;
+}
+#serach .myjd .myjdhide .hidebot{
+	width: 310px;
+	height: 52px;
+	margin-top: 3px;
+	background: #F3F3F3;
+	float: left;
+}
+#serach .myjd .myjdhide .hidebot .bottop{
+	width: 305px;
+	height: 18px;
+	/*background: green;*/
+	margin-left: 5px;
+	margin-top: 5px;
+	float: left;
+}
+#serach .myjd .myjdhide .hidebot .bottop span{
+	float: left;
+	color: #666;
+}
+#serach .myjd .myjdhide .hidebot .bottop a{
+	display: block;
+	margin-top: 0px;
+	margin-left: 120px;
+	color: #005EA7;
+}
+#serach .myjd .myjdhide .hidebot .botdown {
+	width: 305px;
+	height: 18px;
+	float: left;
+}
+#serach .myjd .myjdhide .hidebot .botdown span{
+	margin-left: 120px;
+	color: #666;
+}
+#serach .gouwuche{
+	width: 124px;
+	height: 32px;
+	border: 1px solid orange;
+	float: left;
+	background: #F7F7F7;
+	border: 1px solid #ccc;
+	margin-top: 25px;
+	margin-left: 10px;
+	position: relative;
+}
+#serach .gouwuche .chetu{
+	width: 22px;
+	height: 20px;
+	background: url(../images/all.png) no-repeat -120px -88px;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+#serach .gouwuche a{
+	display: block;
+	padding-left: 30px;
+	padding-top: 7px;
+	color: #666;
+}
+#serach .gouwuche a:hover{
+	color: #E4393C;
+	text-decoration: underline;
+}
+#serach .gouwuche .jianleft{
+	width: 10px;
+	height: 10px;
+	background: url(../images/all.png) no-repeat -110px -45px;
+	position: absolute;
+	top: 10px;
+	right: 5px;
+}
+#serach .gouwuche .num{
+	width: 17px;
+	height: 20px;
+	position: absolute;
+	top: -10px;
+	left: 20px;
+	background: url(../images/all.png) no-repeat -134px -280px;
+}
+#serach .gouwuche .num .numright{
+	width: 10px;
+	height: 20px;
+	float: right;
+	/*border: 1px solid orange;*/
+	background: url(../images/all.png) no-repeat -132px -251px;
+}
+#serach .gouwuche .num .numzi{
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	top: 0px;
+}
+#serach .gouwuche .num span{
+	display: block;
+	margin-left: 3px;
+	margin-top: -2px;
+	font-size: 14px;
+	color: #FFF;
+}
+#serach .gouwuche .hideche{
+	width: 348px;
+	height: 69px;
+	background: white;
+	border: 1px solid #ccc;
+	position: absolute;
+	top: 32px;
+	left: -225px;
+	display: none;
+	z-index: 22;
+}
+#serach .gouwuche:hover .hideche{
+	display: block;
+}
+#serach .gouwuche .hideche .kongche{
+	width: 56px;
+	height: 49px;
+	margin-left: 40px;
+	margin-top: 7px;
+	float: left;
+	background: url(../images/all.png) no-repeat 0px 0px;
+}
+#serach .gouwuche .hideche span{
+	display: block;
+	margin-top: 30px;
+	color: #999;
+}
+#serach .jubao{
+	width: 134px;
+	height: 46px;
+	float: left;
+	margin-left: 5px;
+	margin-top: 15px;
+	background: url(../images/a1.png) no-repeat;
+}
+/*搜索区域结束*/

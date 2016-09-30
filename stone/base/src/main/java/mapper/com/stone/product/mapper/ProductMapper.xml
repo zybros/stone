@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.stone.product.mapper.ProductMapper" >
+<!--   <cache type="org.mybatis.caches.ehcache.EhcacheCache" /> -->
+  <resultMap id="BaseResultMap" type="com.stone.product.model.Product" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="CATEGORY_ID" property="cid" jdbcType="INTEGER" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="REAL" />
+    <result column="DISCOUNT_PRICE" property="discountPrice"/>
+    <result column="TIME" property="time" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="NO" property="no" jdbcType="LONGVARCHAR" />
+    <result column="IMGS" property="imgs" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="productWithShopMap" type="com.stone.product.model.Product" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="CATEGORY_ID" property="cid" jdbcType="INTEGER" />
+     <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="REAL" />
+    <result column="DISCOUNT_PRICE" property="discountPrice"/>
+    <result column="TIME" property="time" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="NO" property="no" jdbcType="LONGVARCHAR" />
+    <result column="IMGS" property="imgs" jdbcType="VARCHAR" />
+    <association property="shop" column="SHOP_ID" resultMap="shopMap"/>
+    
+  </resultMap>
+  
+  <resultMap id="shopMap" type="com.stone.shop.model.TShop">
+	<id column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+</resultMap>
+
+
+  <select id="selectByTCId" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List" /> from t_product where CATEGORY_ID =#{CATEGORY_ID}
+  </select>
+  
+  <sql id="Base_Column_List" >
+    ID, SHOP_ID, CATEGORY_ID,brand_id, TITLE, PRICE, `TIME`, `STATUS`, IMGS, NO
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_product
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectWithShopById" resultMap="productWithShopMap" parameterType="java.lang.Integer" >
+    	select p.*, s.`name` from t_product p LEFT JOIN t_shop s
+		on p.SHOP_ID=s.shop_id
+		where p.ID = #{id}
+  </select>
+  
+   <select id="selectWithShopByCid" resultMap="productWithShopMap" parameterType="java.lang.Integer" >
+    	select p.*, s.`name` from t_product p LEFT JOIN t_shop s
+		on p.SHOP_ID=s.shop_id
+		where  CATEGORY_ID = #{cid}  order by p.ID DESC
+  </select>
+  
+  
+  
+  <select id="selectBySelector" resultMap="BaseResultMap" parameterType="map" >
+		select * from t_product p
+		INNER JOIN t_sku_value sv
+		on p.ID = sv.product_id
+		<where>  
+	        <if test="cid != null and cid != '' ">  
+	            AND CATEGORY_ID = #{cid}   
+	        </if>  
+	        <if test="brandId != null and brandId != '' ">  
+	            AND brand_id = #{brandId}   
+	        </if>  
+	        <if test="exts!=null and exts.size()>0">  
+	            AND 
+	         <foreach collection="exts" item="item" separator="or" open="(" close=")">
+	          (sv.template_id = #{item.templateId} and sv.value = #{item.value})
+	        </foreach>
+	        </if>  
+	    </where>    
+	    group by p.id
+  </select>
+  
+  
+  
+  
+  
+  
+   <select id="selectByCategoryID" resultMap="BaseResultMap"  parameterType="java.lang.Integer" >
+    select  <include refid="Base_Column_List" /> from t_product
+    where CATEGORY_ID = #{cid}
+  </select>
+  
+  <select id="selectByProduct" resultMap="BaseResultMap"  parameterType="com.stone.product.model.Product" >
+    select  <include refid="Base_Column_List" /> from t_product
+    <where>  
+        <if test="cid != null and cid != '' ">  
+            AND CATEGORY_ID = #{cid, jdbcType=INTEGER}   
+        </if>  
+        <if test="brandId != null and brandId != '' ">  
+            AND brand_id = #{brandId, jdbcType=INTEGER}   
+        </if>  
+        <if test="shopId != null and shopId != '' ">  
+             AND SHOP_ID = #{shopId, jdbcType=INTEGER}   
+        </if>  
+         <if test="status != null and status != '' ">  
+             AND STATUS = #{status, jdbcType=INTEGER}   
+        </if>  
+    </where>    
+  </select>
+  
+   <select id="selectByShopID" resultMap="BaseResultMap"  parameterType="java.lang.Integer" >
+    select  <include refid="Base_Column_List" /> from t_product
+    where SHOP_ID = #{shopId}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from t_product
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stone.product.model.Product" flushCache="true" useGeneratedKeys="true" keyProperty="id">
+    insert into t_product (SHOP_ID, CATEGORY_ID, brand_id,
+      TITLE, PRICE, `STATUS`, IMGS, NO
+      )
+    values (#{shopId,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{brandId}, 
+      #{title,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{status,jdbcType=INTEGER},#{imgs},#{no}
+      )
+      <selectKey resultType="int" keyProperty="id" order="AFTER">
+           SELECT LAST_INSERT_ID() as ID;
+       </selectKey> 
+  </insert>
+  <insert id="insertSelective" parameterType="com.stone.product.model.Product" flushCache="true" >
+    insert into t_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ID,
+      SHOP_ID,
+      CATEGORY_ID,
+      TITLE,
+      PRICE,
+      `TIME`,
+      `STATUS`,
+      IMGS, 
+      NO
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      #{shopId,jdbcType=INTEGER},
+      #{cid,jdbcType=INTEGER},
+      #{title,jdbcType=VARCHAR},
+      #{price,jdbcType=REAL},
+      #{time,jdbcType=CHAR},
+      #{status,jdbcType=INTEGER},
+      #{imgs},
+      #{no}
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stone.product.model.Product" flushCache="true" >
+    update t_product
+    <set >
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        CATEGORY_ID = #{cid,jdbcType=INTEGER},
+      </if>
+       <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=REAL},
+      </if>
+       <if test="discountPrice != null" >
+        DISCOUNT_PRICE = #{discountPrice},
+      </if>
+      <if test="time != null" >
+        `TIME` = #{time,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        `STATUS` = #{status,jdbcType=INTEGER},
+      </if>
+       <if test="imgs != null" >
+        IMGS = #{imgs},
+      </if>
+       <if test="no != null" >
+        NO = #{no},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stone.product.model.Product" flushCache="true" >
+    update t_product
+    set SHOP_ID = #{shopId,jdbcType=INTEGER},
+      CATEGORY_ID = #{cid,jdbcType=INTEGER},
+      TITLE = #{title,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=REAL},
+      `TIME` = #{time,jdbcType=CHAR},
+      `STATUS` = #{status,jdbcType=INTEGER},
+       IMGS = #{imgs},
+       NO = #{no}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <select id="search" resultMap="BaseResultMap" parameterType="java.lang.String">
+      <![CDATA[ 
+    select  ID, SHOP_ID, CATEGORY_ID, replace(lower(TITLE),#{keyWords},concat('<font color=\"red\">',#{keyWords},'</font> ')) as TITLE, PRICE, `TIME`, `STATUS`, IMGS, NO
+    from t_product 
+    where TITLE REGEXP #{keyWords}
+      ]]>
+  </select>
+  
+  
+</mapper>

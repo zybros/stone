@@ -1,0 +1,1121 @@
+@charset "utf-8";
+
+
+#daohang{
+
+
+	margin: 0px;
+
+
+	padding: 0px;
+
+
+	text-decoration:none;
+
+
+	list-style: none;
+
+
+	font-size: 12px;
+
+
+	font-family: Arial;
+
+
+}
+
+
+/*导航条区域开始*/
+
+
+#daohang{
+
+
+	width: 1210px;
+
+
+	height: 40px;
+
+
+	margin: 0 auto;
+
+
+	background: #E43D3F;
+
+
+	position: relative;
+
+
+	z-index: 97;
+
+
+}
+
+
+#daohang .dhleft{
+
+
+	width: 210px;
+
+
+	height: 40px;
+
+
+	float: left;
+
+
+}
+
+
+#daohang .dhleft .erjimenu{
+
+
+	width: 206px;
+
+
+	height: 401px;
+
+
+	border: 2px solid #E4393C;
+
+
+	position: relative;
+	
+	background:#B61D1D;
+	
+	display: none;
+
+
+	/*border-top: none;*/
+
+
+}
+
+
+
+
+#daohang .dhleft .erjimenu ul{
+
+
+	margin-top: 9px;
+
+
+	margin-left: 1px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li{
+
+
+	width: 205px;
+
+
+	height: 27px;
+
+
+	float: right;
+
+
+/* 	border: 1px solid white;  */
+
+
+	border-left: none;
+	
+
+}
+
+
+
+#daohang .dhleft .erjimenu ul li .mulu{
+
+	margin-left: 0px;
+
+	padding-left: 15px;
+	
+	position: relative;
+	
+	color:white;
+	
+	
+}
+
+
+#daohang .dhleft .erjimenu ul li .mulu .jian{
+
+
+	width: 10px;
+
+
+	height: 10px;
+
+
+	background: url(../images/all.png) no-repeat -110px -45px;
+
+
+	position: absolute;
+
+
+	top: 7px;
+
+
+	right: 3px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .mulu .bai{
+
+
+	width: 8px;
+
+
+	height: 26px;
+
+
+	background: white;
+
+
+	position: absolute;
+
+
+	z-index: 24;
+
+
+	top: 0px;
+
+
+	right: 1px;
+
+
+	display: none;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hidemenu{
+
+
+	width: 705px;
+
+
+	height: 439px;
+
+
+	background: white;
+
+
+	border: 1px solid #ccc;
+
+
+	z-index: 23;
+
+
+	position: absolute;
+
+
+	top: 0px;
+
+
+	left: 203px;
+
+
+	display: none;
+
+
+}
+
+
+
+#daohang .dhleft .erjimenu ul li .hideleft{
+
+
+	width: 489px;
+
+
+	height: 439px;
+
+
+	float: left;
+
+
+}
+
+
+
+#daohang .dhleft .erjimenu ul li .hidetop{
+
+
+	width: 665px;
+
+
+	height: 38px;
+
+
+	border-bottom: 1px solid #ccc;
+
+
+	float: left;
+
+
+	margin-left: 10px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hidetop ul{
+
+
+	margin-left: 10px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hidetop ul li{
+
+
+	width: 86px;
+
+
+	height: 28px;
+
+
+	float: left;
+
+
+	margin-right: 20px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hidetop ul li a{
+
+
+	color: #666;
+
+
+	float: left;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hidetop ul li .chong{
+
+
+	width: 30px;
+
+
+	height: 30px;
+
+
+	float: left;
+
+
+	background: url(../images/zz.png) no-repeat;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hidetop ul li .caipiao{
+
+
+	width: 30px;
+
+
+	height: 30px;
+
+
+	float: left;
+
+
+	background: url(../images/zz.png) no-repeat 0 -49px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hidetop ul li .peixun{
+
+
+	width: 30px;
+
+
+	height: 30px;
+
+
+	float: left;
+
+
+	background: url(../images/zz.png) no-repeat 0 -100px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hidetop ul li .jipiao{
+
+
+	width: 30px;
+
+
+	height: 30px;
+
+
+	float: left;
+
+
+	background: url(../images/zz.png) no-repeat 0 -146px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hidetop ul li .qianzheng{
+
+
+	width: 30px;
+
+
+	height: 30px;
+
+
+	float: left;
+
+
+	background: url(../images/zz.png) no-repeat 0 -194px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hidetop ul li .youxi{
+
+
+	width: 30px;
+
+
+	height: 30px;
+
+
+	float: left;
+
+
+	background: url(../images/zz.png) no-repeat 0 -243px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hidetop ul li a:hover{
+
+
+	color:#E4393C;
+
+
+	font-size: 14px;
+
+
+	text-decoration: underline;
+
+
+	font-weight: normal;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideleft .dl1{
+
+
+	width: 477px;
+
+
+/* 	height: 25px; */
+
+
+	margin-left: 10px;
+
+
+	border-bottom: 1px solid #eee;
+
+
+	padding: 6px 0px;
+	float:left;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideleft1 .dl1{
+
+
+	width: 334px;
+
+
+	height: 25px;
+
+
+	margin-left: 10px;
+
+
+	border-bottom: 1px solid #eee;
+
+
+	padding: 6px 0px;
+
+
+}
+
+#daohang .dhleft .erjimenu ul li .hideleft1  dt a{
+
+
+	color: #E4393C;
+
+
+	font-size: 12px;
+
+
+	font-weight: 700;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideleft dt{
+
+
+	float: left;
+
+
+	margin-right: 10px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideleft1 dt{
+
+
+	float: left;
+
+
+	margin-right: 10px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideleft dt a{
+
+
+	color: #E4393C;
+
+
+	font-size: 12px;
+
+
+	font-weight: 700;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideleft dd{
+
+
+	float: left;
+
+
+	white-space: nowrap;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideleft dd a{
+
+
+	font-size: 12px;
+
+
+	font-weight: 400;
+
+
+	padding: 0px 8px;
+
+
+	color: #666;
+
+
+	border-left: 1px solid #ccc;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideleft1 dd{
+
+
+	float: left;
+
+
+	white-space: nowrap;/*文本不会拆开*/
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideleft1 dd a{
+
+
+	font-size: 12px;
+
+
+	font-weight: 400;
+
+
+	padding: 0px 8px;
+
+
+	color: #666;
+
+
+	border-left: 1px solid #ccc;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideleft dd a:hover{
+
+
+	color: #E4393C;
+
+
+	text-decoration: underline;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideleft1 dd a:hover{
+
+
+	color: #E4393C;
+
+
+	text-decoration: underline;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright{
+
+
+	width: 210px;
+
+
+	height: 439px;
+
+
+	float: left;
+
+
+}
+
+
+
+
+
+#daohang .dhleft .erjimenu ul li .hideright .phoneplan{
+
+
+	width: 194px;
+
+
+	height: 30px;
+
+
+	background: url(../images/b6.png) no-repeat 0px -60px;
+
+
+	margin: 10px 8px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright .game{
+
+
+	width: 194px;
+
+
+	height: 30px;
+
+
+	background: url(../images/b66.png) no-repeat;
+
+
+	margin: 10px 8px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright .jiazhuang{
+
+
+	width: 194px;
+
+
+	height: 30px;
+
+
+	background: url(../images/b6.png) no-repeat 0px -90px;
+
+
+	margin: 10px 8px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright dt{
+
+
+	color: #E4393C;
+
+
+	font-size: 12px;
+
+
+	font-weight: 700;
+
+
+	margin-top: 20px;
+
+
+	margin-left: 10px;
+
+
+	margin-bottom: 5px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright dd a{
+
+
+	font-size: 12px;
+
+
+	font-weight: 400;
+
+
+	padding-left: 10px;
+
+
+	line-height: 20px;
+
+
+	color: #666;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright dd a:hover{
+
+
+	text-decoration: underline;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright ul li{
+
+
+	width: 102px;
+
+
+	height: 20px;
+
+
+	float: left;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright ul li a{
+
+
+	font-size: 12px;
+
+
+	font-weight: 400;
+
+
+	padding-left: 10px;
+
+
+	line-height: 20px;
+
+
+	color: #666;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright ul li a:hover{
+
+
+	text-decoration: underline;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright .tu1{
+
+
+	margin-top: 8px;
+
+
+	margin-left: 10px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright .tu2{
+
+
+	margin-top: 120px;
+
+
+	margin-left: 10px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright .tu3{
+
+
+	margin-top: 180px;
+
+
+	margin-left: 10px;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li .hideright .tu4{
+
+
+	margin-top: 230px;
+
+
+	margin-left: 10px;
+
+
+}
+
+
+/*鼠标移入分类标题时，一级分类显示*/
+
+
+#daohang .dhleft:hover .erjimenu{
+
+	display: block;
+
+
+}
+
+
+
+#daohang .dhleft .erjimenu ul li.li1:hover .hidemenu,
+
+#daohang .dhleft .erjimenu ul li:hover .bai{
+
+
+	display: block;
+	
+
+}
+
+
+#daohang .dhleft .erjimenu  > ul > li:hover .jian{
+
+
+	display: none;
+
+
+}
+
+
+#daohang .dhleft .erjimenu > ul > li:hover .mulu{
+
+
+	background:white;
+	
+	color:red;
+}
+
+
+#daohang .dhleft .erjimenu > ul > li:hover a{
+
+	background:white;
+	
+	color:red;
+}
+
+
+#daohang .dhleft .erjimenu ul li a{
+
+
+	font-size: 14px;
+
+
+	line-height: 26px;
+
+
+	color: white;
+
+
+	font-weight: 400;
+
+
+}
+
+
+#daohang .dhleft .erjimenu ul li a:hover{
+
+
+	color: #E4393C;
+
+
+	font-weight: 700;
+
+
+}
+
+
+#daohang .dhleft > a{
+
+
+	width: 190px;
+
+
+	height: 40px;
+
+
+	display: block;
+
+
+	color: white;
+
+
+	font-weight: 700;
+
+
+	font-size: 14px;
+
+
+	padding-left: 20px;
+
+
+	line-height: 40px;
+
+
+}
+
+
+#daohang .dhleft a:hover{
+
+
+	text-decoration: underline;
+
+
+}
+
+
+#daohang .dhright{
+
+
+	width: 1000px;
+
+
+	height: 40px;
+
+
+	float: left;
+
+
+}
+
+
+#daohang .dhright ul{
+
+
+	float: left;
+
+
+}
+
+
+#daohang .dhright ul li{
+
+
+	float: left;
+
+
+	width: 85px;
+
+
+	height: 40px;
+
+
+}
+
+
+#daohang .dhright ul li a{
+
+
+	display: block;
+
+
+	width: 85px;
+
+
+	height: 40px;
+
+
+	font-size: 14px;
+
+
+	font-weight: 700;
+
+
+	line-height: 40px;
+
+
+	text-align: center;
+
+
+	color: white;
+
+
+}
+
+
+#daohang .dhright ul li a:hover{
+
+
+	background: #A40000;
+
+
+}
+
+
+#daohang .dhright .dhtu{
+
+
+	float: right;
+
+
+	width: 141px;
+
+
+	height: 40px;
+
+
+	position: relative;
+
+
+}
+
+
+#daohang .dhright .dhtu ul li{
+
+
+	position: absolute;
+
+
+	display: none;
+
+
+}
+
+
+#daohang .dhright .dhtu ul li.on{
+
+
+	display: block;
+
+
+}
+
+
+#daohang .dhright .dhtu .zeng{
+
+
+	width: 100px;
+
+
+	height: 40px;
+
+
+	position: absolute;
+
+
+	top: 0px;
+
+
+	left: 40px;
+
+
+}
+
+
+#daohang .dhright .dhtu .zeng span{
+
+
+	color: yellow;
+
+
+	font-size: 18px;
+
+
+	font-weight: 700;
+
+
+	line-height: 40px;
+
+
+	font-style: oblique;
+
+
+}
+
+
+
+
+
+/*导航条区域结束*/
+

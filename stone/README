@@ -1,0 +1,16 @@
+maven parent    maven module
+
+jquery 
+
+springMVC + spring + ibatis
+
+shiro  分布式统一鉴权  会员状态 借用redis存储
+
+redis  除登录会员状态信息还有其他频繁使用信息，如购物车里面的信息，用户浏览历史，相关推荐
+
+
+elasticsearch   搜索服务
+
+zookeeper  分布式注册服务中心   服务于duboo
+
+duboo 分布式服务框架

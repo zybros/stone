@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.stone.site.mapper.TNavigationMapper">
+	<resultMap id="BaseResultMap" type="com.stone.site.model.TNavigation">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="order" property="order" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, `name`, url, parent_id, `type`, `order`, `status`
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_navigation
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectSublistByPid" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_navigation
+		where
+		parent_id = #{parentId}
+	</select>
+
+	<select id="selectListByNav" resultMap="BaseResultMap"
+		parameterType="com.stone.site.model.TNavigation">
+		select
+		<include refid="Base_Column_List" />
+		from t_navigation
+		<where>
+			<if test="type != null and type != '' ">
+				AND type = #{type}
+			</if>
+			<if test="parentId != null and parentId != '' ">
+				AND parent_id = #{parentId}
+			</if>
+			<if test="status != null and status != '' ">
+				AND status = #{status}
+			</if>
+		</where>
+	</select>
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_navigation
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.stone.site.model.TNavigation">
+		insert into t_navigation (id, `name`, url,
+		parent_id, `type`, `order`,
+		`status`)
+		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR},
+		#{parentId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{order,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.stone.site.model.TNavigation">
+		insert into t_navigation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			`name`,
+			url,
+			parent_id,
+			`type`,
+			`order`,
+			`status`,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=INTEGER},
+			#{name,jdbcType=VARCHAR},
+			#{url,jdbcType=VARCHAR},
+			#{parentId,jdbcType=INTEGER},
+			#{type,jdbcType=INTEGER},
+			#{order,jdbcType=INTEGER},
+			#{status,jdbcType=INTEGER},
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.stone.site.model.TNavigation">
+		update t_navigation
+		<set>
+			<if test="name != null">
+				`name` = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				`type` = #{type,jdbcType=INTEGER},
+			</if>
+			<if test="order != null">
+				`order` = #{order,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				`status` = #{status,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.stone.site.model.TNavigation">
+		update t_navigation
+		set `name` = #{name,jdbcType=VARCHAR},
+		url = #{url,jdbcType=VARCHAR},
+		parent_id = #{parentId,jdbcType=INTEGER},
+		`type` = #{type,jdbcType=INTEGER},
+		`order` = #{order,jdbcType=INTEGER},
+		`status` = #{status,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+
+
+
+	<resultMap id="navMap" type="com.stone.site.model.TNavigation">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="order" property="order" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<collection property="sublist" column="id" select="selectSublist" />  
+	</resultMap>
+
+	<select id="selectAll" resultMap="navMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_navigation
+		where
+		parent_id = 0
+	</select>
+
+	<select id="selectSublist" parameterType="java.lang.Integer" resultMap="navMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_navigation
+		where
+		parent_id = #{id}
+	</select>
+
+
+</mapper>

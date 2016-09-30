@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.stone.order.mapper.TOrderDetailMapper" >
+  <cache type="org.mybatis.caches.ehcache.EhcacheCache" />
+  <resultMap id="BaseResultMap" type="com.stone.order.model.TOrderDetail" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ORDER_ID" property="orderId" jdbcType="INTEGER" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="INTEGER" />
+    <result column="PRODUCT_NO" property="productNo" jdbcType="VARCHAR" />
+    <result column="PRODUCT_TITLE" property="productTitle" jdbcType="VARCHAR" />
+    <result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+    <result column="SKU_NAME" property="skuName" jdbcType="VARCHAR" />
+    <result column="SKU_NO" property="skuNo" jdbcType="VARCHAR" />
+    <result column="SKU_IMG" property="skuImg" jdbcType="VARCHAR" />
+    <result column="SKU_PRICE" property="skuPrice" jdbcType="REAL" />
+    <result column="SKU_DISCOUNT" property="skuDiscount" jdbcType="REAL" />
+    <result column="DISCOUNT_PRICE" property="discountPrice" jdbcType="REAL" />
+    <result column="OFFER_ID" property="offerId" jdbcType="INTEGER" />
+    <result column="PRICE" property="price" jdbcType="REAL" />
+    <result column="COUNT" property="count" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_ID, PRODUCT_ID, PRODUCT_NO, PRODUCT_TITLE, SKU_ID, SKU_NAME, SKU_NO, SKU_IMG, 
+    SKU_PRICE, SKU_DISCOUNT, DISCOUNT_PRICE, OFFER_ID, PRICE,COUNT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from t_order_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stone.order.model.TOrderDetail" flushCache="true" >
+    insert into t_order_detail (ID, ORDER_ID, PRODUCT_ID, 
+      PRODUCT_NO, PRODUCT_TITLE, SKU_ID, 
+      SKU_NAME, SKU_NO, SKU_IMG, 
+      SKU_PRICE, SKU_DISCOUNT, DISCOUNT_PRICE, 
+      OFFER_ID, PRICE, COUNT)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
+      #{productNo,jdbcType=VARCHAR}, #{productTitle,jdbcType=VARCHAR}, #{skuId,jdbcType=INTEGER}, 
+      #{skuName,jdbcType=VARCHAR}, #{skuNo,jdbcType=VARCHAR}, #{skuImg,jdbcType=VARCHAR}, 
+      #{skuPrice,jdbcType=REAL}, #{skuDiscount,jdbcType=REAL}, #{discountPrice,jdbcType=REAL}, 
+      #{offerId,jdbcType=INTEGER}, #{price,jdbcType=REAL}, #{count,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stone.order.model.TOrderDetail" flushCache="true" >
+    insert into t_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ID,
+      ORDER_ID,
+      PRODUCT_ID,
+      PRODUCT_NO,
+      PRODUCT_TITLE,
+      SKU_ID,
+      SKU_NAME,
+      SKU_NO,
+      SKU_IMG,
+      SKU_PRICE,
+      SKU_DISCOUNT,
+      DISCOUNT_PRICE,
+      OFFER_ID,
+      PRICE,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      #{orderId,jdbcType=INTEGER},
+      #{productId,jdbcType=INTEGER},
+      #{productNo,jdbcType=VARCHAR},
+      #{productTitle,jdbcType=VARCHAR},
+      #{skuId,jdbcType=INTEGER},
+      #{skuName,jdbcType=VARCHAR},
+      #{skuNo,jdbcType=VARCHAR},
+      #{skuImg,jdbcType=VARCHAR},
+      #{skuPrice,jdbcType=REAL},
+      #{skuDiscount,jdbcType=REAL},
+      #{discountPrice,jdbcType=REAL},
+      #{offerId,jdbcType=INTEGER},
+      #{price,jdbcType=REAL},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stone.order.model.TOrderDetail" flushCache="true" >
+    update t_order_detail
+    <set >
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        PRODUCT_ID = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productNo != null" >
+        PRODUCT_NO = #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productTitle != null" >
+        PRODUCT_TITLE = #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        SKU_ID = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="skuName != null" >
+        SKU_NAME = #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuNo != null" >
+        SKU_NO = #{skuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="skuImg != null" >
+        SKU_IMG = #{skuImg,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPrice != null" >
+        SKU_PRICE = #{skuPrice,jdbcType=REAL},
+      </if>
+      <if test="skuDiscount != null" >
+        SKU_DISCOUNT = #{skuDiscount,jdbcType=REAL},
+      </if>
+      <if test="discountPrice != null" >
+        DISCOUNT_PRICE = #{discountPrice,jdbcType=REAL},
+      </if>
+      <if test="offerId != null" >
+        OFFER_ID = #{offerId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=REAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stone.order.model.TOrderDetail" flushCache="true" >
+    update t_order_detail
+    set ORDER_ID = #{orderId,jdbcType=INTEGER},
+      PRODUCT_ID = #{productId,jdbcType=INTEGER},
+      PRODUCT_NO = #{productNo,jdbcType=VARCHAR},
+      PRODUCT_TITLE = #{productTitle,jdbcType=VARCHAR},
+      SKU_ID = #{skuId,jdbcType=INTEGER},
+      SKU_NAME = #{skuName,jdbcType=VARCHAR},
+      SKU_NO = #{skuNo,jdbcType=VARCHAR},
+      SKU_IMG = #{skuImg,jdbcType=VARCHAR},
+      SKU_PRICE = #{skuPrice,jdbcType=REAL},
+      SKU_DISCOUNT = #{skuDiscount,jdbcType=REAL},
+      DISCOUNT_PRICE = #{discountPrice,jdbcType=REAL},
+      OFFER_ID = #{offerId,jdbcType=INTEGER},
+      PRICE = #{price,jdbcType=REAL}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
